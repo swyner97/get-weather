@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+body{
+  background: #2f2e30;
+}
+
+
+
+header {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%);
+    color: white;
+    padding: 20px;
+    margin-bottom: 10px;;
+}
+
+button {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%);
+}
+
+h1 {
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+}
+
+#search-container {
+    width: 20rem;
+    margin:10px;
+}
+
+#search-h1 {
+    margin: 5px;
+}
+
+#search-input {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}
