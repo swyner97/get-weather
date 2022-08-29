@@ -33,7 +33,7 @@ button.addEventListener('click', fetchFunc = () => {
                     let uvIndex = document.createElement('p');
                     let getHumidity = response.current.humidity;
                     let getUVIndex = response.current.uvi;
-                    
+                    let fiveDays = document.getElementById('5-day')
 
                     uvIndex.innerHTML = `UV Index: ${getUVIndex}`
                     humidity.innerHTML = `Humidty: ${getHumidity}%`;
@@ -41,9 +41,24 @@ button.addEventListener('click', fetchFunc = () => {
                     cityDiv.append(cityName, temp, wind, humidity, uvIndex);
 
                     days = moment().add(1, 'days').format('l')
+                    console.log(response.daily)
 
                     for (let i = 0; i < 7; i++) {
                         daysFormula = moment().add([i], 'days').format('l');
+                        let card = document.createElement('div')
+                        //date
+                        //icon 
+                        let getIcon = response.daily.weather[i].icon;
+                        let icon = document.createElement('img');
+                        icon.setAttribute('src',getIcon);
+                       
+                        card.append(icon)
+                        fiveDays.append(card)
+
+
+                        //temp
+                        //wind
+                        //humidity
                         
                     }
                 
