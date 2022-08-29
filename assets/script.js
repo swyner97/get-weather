@@ -41,14 +41,14 @@ button.addEventListener('click', fetchFunc = () => {
                     cityDiv.append(cityName, temp, wind, humidity, uvIndex);
 
                     days = moment().add(1, 'days').format('l')
-                    console.log(response.daily)
+                    console.log(response.daily.weather)
 
                     for (let i = 0; i < 7; i++) {
                         daysFormula = moment().add([i], 'days').format('l');
                         let card = document.createElement('div')
                         //date
                         //icon 
-                        let getIcon = response.daily.weather[i].icon;
+                        let getIcon = response.daily[i].weather[i].icon;
                         let icon = document.createElement('img');
                         icon.setAttribute('src',getIcon);
                        
