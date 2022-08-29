@@ -33,15 +33,39 @@ button.addEventListener('click', fetchFunc = () => {
                     let uvIndex = document.createElement('p');
                     let getHumidity = response.current.humidity;
                     let getUVIndex = response.current.uvi;
+                    
 
                     uvIndex.innerHTML = `UV Index: ${getUVIndex}`
                     humidity.innerHTML = `Humidty: ${getHumidity}%`;
 
-                    cityDiv.append(cityName, temp, wind, humidity, uvIndex)
+                    cityDiv.append(cityName, temp, wind, humidity, uvIndex);
+
+                    days = moment().add(1, 'days').format('l')
+
+                    for (let i = 0; i < 7; i++) {
+                        daysFormula = moment().add([i], 'days').format('l');
+                        
+                    }
+                
                 })
+
+
         })
         .catch(err => console.error(err));
 
 
 }
 );
+
+// let day = moment().add(1, 'days').format('l');
+// console.log(day)
+// days = moment().add(1, 'days').format('l')
+
+// let getWeek = () => {
+//     for (let i = 0; i < 7; i++) {
+//         daysFormula = moment().add([i], 'days').format('l');
+//        console.log(daysFormula)
+//     }
+// }
+
+// getWeek()
