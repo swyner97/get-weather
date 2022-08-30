@@ -3,16 +3,22 @@ let daysOutput = document.getElementById('5-day');
 let weatherApiKey = `26ddf8f43bcf591b20c4ad83cf52357c`;
 let cityDiv = document.querySelector('.cityClass');
 let cityName = document.createElement('h1');
+let city = document.getElementById('search-input');
 
 const options = { method: 'GET' };
 
-button.addEventListener('submit', getSearchVal = () => {
-    let city = document.getElementById('#search-input');
+let getSearchVal = (event) => {
+    event.preventDefault();
+    if (!city.value) {
+
+    }
+
     let searchedVal = city.value;
 
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${searchedVal}&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
         .then(response => response.json())
         .then(response => {
+            let searchedData = document.getElementById('searched-data')
             let temp = document.createElement('p');
             let wind = document.createElement('p');
             let getTemp = response.main.temp;
@@ -23,9 +29,10 @@ button.addEventListener('submit', getSearchVal = () => {
             cityDiv.setAttribute('id', "cityDiv");
             temp.innerHTML = `Temp: ${getTemp}°F`;
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
-            console.log(response.main.temp)
 
             cityDiv.append(cityName, temp, wind);
+            searchedData.append(cityDiv);
+
             secondFetch(getLat, getLon)
             if (typeof (Storage) !== 'undefined') {
                 localStorage.setItem('city', city.value);
@@ -43,11 +50,14 @@ button.addEventListener('submit', getSearchVal = () => {
 
                     city.value = storedCity.value;
                 })
-
+                event.preventDefault();
             };
 
         }).catch(err => console.error(err));
-})
+}
+
+
+
 
 let secondFetch = (getLat, getLon) => {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${getLat}&lon=${getLon}&units=imperial&exclude=minutely,houry&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
@@ -95,4 +105,4 @@ let secondFetch = (getLat, getLon) => {
 
 
 
-// button.addEventListener('submit', getSearchVal(cityName))
+button.addEventListener('submit', getSearchVal)
