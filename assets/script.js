@@ -3,20 +3,29 @@ let button = document.getElementById('search-button');
 // let cityOutput = documnet.getElementById('city');
 let daysOutput = document.getElementById('5-day');
 let weatherApiKey = `26ddf8f43bcf591b20c4ad83cf52357c`;
+let cityDiv = document.querySelector('.cityClass');
+let cityName = document.createElement('h1');
 // let citySearch = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
 // let coordinateSearch = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${weatherApiKey}`;
 
 
 const options = { method: 'GET' };
 
-button.addEventListener('click', fetchFunc = () => {
+// let clearData = () => {
+//     button.addEventListener('click', clearFunc = () => {
+//         firstFetch()
+//         secondFetch()
+//         let searchedData = document.getElementById('searched-data');
+//         searchedData.innerHTML = ' ';
+//     })
+
+// }
+
+let firstFetch = cityName => {
 
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city.value + '&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c', options)
         .then(response => response.json())
         .then(response => {
-
-            let cityDiv = document.querySelector('.cityClass');
-            let cityName = document.createElement('h1');
             cityName.innerHTML = city.value;
             let temp = document.createElement('p');
             let wind = document.createElement('p');
@@ -25,8 +34,13 @@ button.addEventListener('click', fetchFunc = () => {
             let getLon = response.coord.lon;
             let getLat = response.coord.lat;
 
+
+            cityDiv.setAttribute('id', "cityDiv");
             temp.innerHTML = `Temp: ${getTemp}°F`;
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
+
+            
+            cityDiv.append(cityName, temp, wind);
 
             if (typeof (Storage) !== 'undefined') {
                 localStorage.setItem('city', city.value);
@@ -41,60 +55,68 @@ button.addEventListener('click', fetchFunc = () => {
                 searchContainer.append(storedCity);
 
                 storedCity.addEventListener('click', storedCityFunc = () => {
-                    let searchedData = document.querySelector('searched-data');
-                    searchedData.innerHTML = ' '
+
                     city.value = storedCity.value;
                     fetchFunc();
                 })
+
             };
 
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${getLat}&lon=${getLon}&units=imperial&exclude=minutely,houry&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
+            secondFetch(getLat, getLon)
+        }), { once: true }
+}
 
-                .then(response => response.json())
-                .then(response => {
 
-                    let humidity = document.createElement('p');
-                    let uvIndex = document.createElement('p');
-                    let getHumidity = response.current.humidity;
-                    let getUVIndex = response.current.uvi;
-                    let fiveDays = document.getElementById('5-day')
+let secondFetch = (getLat, getLon) => {
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${getLat}&lon=${getLon}&units=imperial&exclude=minutely,houry&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
 
-                    uvIndex.innerHTML = `UV Index: ${getUVIndex}`
-                    humidity.innerHTML = `Humidty: ${getHumidity}%`;
+        .then(response => response.json())
+        .then(response => {
 
-                    cityDiv.append(cityName, temp, wind, humidity, uvIndex);
+            let humidity = document.createElement('p');
+            let uvIndex = document.createElement('p');
+            let getHumidity = response.current.humidity;
+            let getUVIndex = response.current.uvi;
+            let fiveDays = document.getElementById('5-day')
 
-                    days = moment().add(1, 'days').format('l')
-                    for (let i = 0; i < 7; i++) {
-                        let daysFormula = moment().add([i], 'days').format('l');
-                        let card = document.createElement('div');
-                        let date = document.createElement('h2');
-                        let dailyTemp = document.createElement('p');
-                        let dailyWind = document.createElement('p');
-                        let dailyHumidity = document.createElement('p');
+            uvIndex.innerHTML = `UV Index: ${getUVIndex}`
+            humidity.innerHTML = `Humidty: ${getHumidity}%`;
 
-                        let getIcon = response.daily[i].weather[0].icon;
-                        let getDailyTemp = response.daily[i].temp.day;
-                        let getDailyWind = response.daily[i].wind_speed;
-                        let getDailyHumidity = response.daily[i].humidity;
+            cityDiv.append(cityName, temp, wind, humidity, uvIndex);
+            days = moment().add(1, 'days').format('l')
+            for (let i = 0; i < 7; i++) {
+                let daysFormula = moment().add([i], 'days').format('l');
+                let card = document.createElement('div');
+                let date = document.createElement('h2');
+                let dailyTemp = document.createElement('p');
+                let dailyWind = document.createElement('p');
+                let dailyHumidity = document.createElement('p');
 
-                        card.classList.add('is-flex', 'is-flex-direction-column', 'is-align-items-center', 'is-flex-wrap', 'card')
-                        dailyHumidity.innerHTML = `Humidity: ${getDailyHumidity}%`
-                        dailyWind.innerHTML = `Wind: ${getDailyWind} MPH`
-                        dailyTemp.innerHTML = `Temp: ${getDailyTemp}°F`;
-                        date.innerHTML = daysFormula;
-                        let icon = document.createElement('img');
-                        icon.setAttribute('src', `http://openweathermap.org/img/wn/${getIcon}.png`);
-                        card.append(date, icon, dailyTemp, dailyWind, dailyHumidity);
-                        fiveDays.append(card);
-                        cityDiv.setAttribute('id', "cityDiv");
-                        city.value = ' '
-                    }
-                })
+                let getIcon = response.daily[i].weather[0].icon;
+                let getDailyTemp = response.daily[i].temp.day;
+                let getDailyWind = response.daily[i].wind_speed;
+                let getDailyHumidity = response.daily[i].humidity;
+
+                card.classList.add('is-flex', 'is-flex-direction-column', 'is-align-items-center', 'is-flex-wrap', 'card')
+                dailyHumidity.innerHTML = `Humidity: ${getDailyHumidity}%`
+                dailyWind.innerHTML = `Wind: ${getDailyWind} MPH`
+                dailyTemp.innerHTML = `Temp: ${getDailyTemp}°F`;
+                date.innerHTML = daysFormula;
+                let icon = document.createElement('img');
+                icon.setAttribute('src', `http://openweathermap.org/img/wn/${getIcon}.png`);
+                card.append(date, icon, dailyTemp, dailyWind, dailyHumidity);
+                fiveDays.append(card);
+                city.value = ' '
+            }
         })
         .catch(err => console.error(err));
+}
 
-}), { once: true }
+button.addEventListener('click', firstFetch(cityName))
+
+
+
+
 
 
 // let storeCities = () => {

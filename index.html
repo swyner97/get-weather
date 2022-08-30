@@ -14,23 +14,26 @@
     <header class="is-flex is-justify-content-center">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly searched-data">
+    <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly">
         <div id="search-container" class="is-flex is-flex-direction-column is-align-items-center">
             <h1>Search for a City:</h1>
             <input type="search" name="" id="search-input" class="input">
-            <button class="button is-normal" id="search-button">Search</button>
+            <button for='search-input' type='submit' class="button is-normal" id="search-button">Search</button>
         </div>
+        <div id="searched-data">
 
-        <div class="is-flex is-flex-direction-column">
-            <div class="cityClass">
-            </div>
-            <div class="five-day-container">
-                <h1>5 Day Forecast:</h1>
-                <div id="5-day" class="is-flex is-flex-direction-row">
 
+            <div class="is-flex is-flex-direction-column">
+                <div class="cityClass">
                 </div>
-            </div>
+                <div class="five-day-container">
+                    <h1>5 Day Forecast:</h1>
+                    <div id="5-day" class="is-flex is-flex-direction-row">
 
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
