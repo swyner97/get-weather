@@ -1,29 +1,12 @@
-
 let button = document.getElementById('search-button');
-
 let daysOutput = document.getElementById('5-day');
 let weatherApiKey = `26ddf8f43bcf591b20c4ad83cf52357c`;
 let cityDiv = document.querySelector('.cityClass');
 let cityName = document.createElement('h1');
-// cityName.innerHTML = city.value;
-// let citySearch = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
-// let coordinateSearch = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${weatherApiKey}`;
-
 
 const options = { method: 'GET' };
 
-// let clearData = () => {
-//     button.addEventListener('click', clearFunc = () => {
-//         firstFetch()
-//         secondFetch()
-//         let searchedData = document.getElementById('searched-data');
-//         searchedData.innerHTML = ' ';
-//     })
-
-// }
-
-button.addEventListener('click', getSearchVal = () => {
-
+button.addEventListener('submit', getSearchVal = () => {
     let city = document.getElementById('#search-input');
     let searchedVal = city.value;
 
@@ -37,14 +20,13 @@ button.addEventListener('click', getSearchVal = () => {
             let getLon = response.coord.lon;
             let getLat = response.coord.lat;
 
-
             cityDiv.setAttribute('id', "cityDiv");
             temp.innerHTML = `Temp: ${getTemp}°F`;
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
             console.log(response.main.temp)
 
             cityDiv.append(cityName, temp, wind);
-
+            secondFetch(getLat, getLon)
             if (typeof (Storage) !== 'undefined') {
                 localStorage.setItem('city', city.value);
 
@@ -60,13 +42,11 @@ button.addEventListener('click', getSearchVal = () => {
                 storedCity.addEventListener('click', storedCityFunc = () => {
 
                     city.value = storedCity.value;
-                    fetchFunc();
                 })
 
             };
 
-            secondFetch(getLat, getLon)
-        })
+        }).catch(err => console.error(err));
 })
 
 let secondFetch = (getLat, getLon) => {
@@ -108,34 +88,11 @@ let secondFetch = (getLat, getLon) => {
                 icon.setAttribute('src', `http://openweathermap.org/img/wn/${getIcon}.png`);
                 card.append(date, icon, dailyTemp, dailyWind, dailyHumidity);
                 fiveDays.append(card);
-                city.value = ' '
             }
         })
         .catch(err => console.error(err));
 }
 
-button.addEventListener('click', getSearchVal(cityName))
 
 
-
-
-
-
-
-
-// let storeCities = () => {
-//     if (typeof (Storage) !== 'undefined') {
-//         localStorage.setItem('city', city.value);
-
-//         let searchContainer = document.getElementById('search-container')
-
-//         let storedCity = document.createElement('button')
-//         storedCity.setAttribute('id', 'stored-city');
-//         storedCity.setAttribute('class', 'button');
-//         storedCity.innerHTML = localStorage.getItem('city');
-//         searchContainer.append(storedCity)
-//     };
-// }
-
-// storeCities();
-
+// button.addEventListener('submit', getSearchVal(cityName))
