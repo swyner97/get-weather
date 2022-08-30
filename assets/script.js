@@ -21,6 +21,7 @@ button.addEventListener('click', fetchFunc = () => {
             let getWind = response.wind.speed;
             let getLon = response.coord.lon;
             let getLat = response.coord.lat;
+            city.value = ' '
 
             temp.innerHTML = `Temp: ${getTemp}°F`;
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
@@ -44,18 +45,29 @@ button.addEventListener('click', fetchFunc = () => {
                     cityDiv.append(cityName, temp, wind, humidity, uvIndex);
 
                     days = moment().add(1, 'days').format('l')
-                    console.log(response.daily.weather)
-
                     for (let i = 0; i < 7; i++) {
-                        daysFormula = moment().add([i], 'days').format('l');
-                        let card = document.createElement('div')
+                        let daysFormula = moment().add([i], 'days').format('l');
+                        let card = document.createElement('div');
+                        let date = document.createElement('h2');
+                        let dailyTemp = document.createElement('p');
+                        let dailyWind = document.createElement('p');
+                        let dailyHumidity = document.createElement('p');
                         //date
                         //icon 
-                        let getIcon = response.daily[i].weather[i].icon;
-                        let icon = document.createElement('img');
-                        icon.setAttribute('src', getIcon);
 
-                        card.append(icon)
+                        let getIcon = response.daily[i].weather[0].icon;
+                        let getDailyTemp = response.daily[i].temp.day;
+                        let getDailyWind = response.daily[i].wind_speed;
+                        let getDailyHumidity = response.daily[i].humidity;
+
+                        card.classList.add('is-flex', 'is-flex-direction-column', 'is-align-items-center', 'card')
+                        dailyHumidity.innerHTML = `Humidity: ${getDailyHumidity}%`
+                        dailyWind.innerHTML = `Wind: ${getDailyWind} MPH`
+                        dailyTemp.innerHTML = `Temp: ${getDailyTemp}°F`;
+                        date.innerHTML = daysFormula;
+                        let icon = document.createElement('img');
+                        icon.setAttribute('src', `http://openweathermap.org/img/wn/${getIcon}.png`);
+                        card.append(date, icon, dailyTemp, dailyWind, dailyHumidity)
                         fiveDays.append(card)
 
 
@@ -66,6 +78,8 @@ button.addEventListener('click', fetchFunc = () => {
                     }
 
                 })
+
+
         })
         .catch(err => console.error(err));
 }), { once: true }

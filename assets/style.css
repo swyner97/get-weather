@@ -4,32 +4,35 @@
 
 }
 
-body{
-  background: #2f2e30;
+header, h1, h2, h3, h4, p {
+    color: white;
+}
+
+body {
+    background: #2f2e30;
 }
 
 header {
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%);
-    color: white;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(252, 176, 69, 1) 100%);
     padding: 20px;
-    margin-bottom: 10px;;
+    margin-bottom: 10px;
 }
 
 button {
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(252,176,69,1) 100%);
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(252, 176, 69, 1) 100%);
 }
 
 h1 {
     font-weight: bold;
     font-size: larger;
-    color: white;
+    
 }
 
 #search-container {
     width: 20rem;
-    margin:10px;
+    margin: 10px;
 }
 
 #search-h1 {
@@ -42,8 +45,9 @@ h1 {
 
 button {
     margin: 5px;
+    color: white;
 }
 
-p {
-    color: white;
+.card {
+    background-color: rgba(255, 255, 255, 0.2);
 }
