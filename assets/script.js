@@ -1,10 +1,11 @@
-let city = document.querySelector('#search-input');
+
 let button = document.getElementById('search-button');
-// let cityOutput = documnet.getElementById('city');
+let city = document.getElementById('#search-input');
 let daysOutput = document.getElementById('5-day');
 let weatherApiKey = `26ddf8f43bcf591b20c4ad83cf52357c`;
 let cityDiv = document.querySelector('.cityClass');
 let cityName = document.createElement('h1');
+cityName.innerHTML = city.value;
 // let citySearch = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
 // let coordinateSearch = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${weatherApiKey}`;
 
@@ -21,50 +22,95 @@ const options = { method: 'GET' };
 
 // }
 
-let firstFetch = cityName => {
+firstFetch = () => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
+.then(response => response.json())
+.then(response => {
 
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city.value + '&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c', options)
-        .then(response => response.json())
-        .then(response => {
-            cityName.innerHTML = city.value;
-            let temp = document.createElement('p');
-            let wind = document.createElement('p');
-            let getTemp = response.main.temp;
-            let getWind = response.wind.speed;
-            let getLon = response.coord.lon;
-            let getLat = response.coord.lat;
+    
+    let temp = document.createElement('p');
+    let wind = document.createElement('p');
+    let getTemp = response.main.temp;
+    let getWind = response.wind.speed;
+    let getLon = response.coord.lon;
+    let getLat = response.coord.lat;
 
 
-            cityDiv.setAttribute('id', "cityDiv");
-            temp.innerHTML = `Temp: ${getTemp}°F`;
-            wind.innerHTML = `Wind Speed: ${getWind} MPH`;
+    cityDiv.setAttribute('id', "cityDiv");
+    temp.innerHTML = `Temp: ${getTemp}°F`;
+    wind.innerHTML = `Wind Speed: ${getWind} MPH`;
+console.log(response.main.temp)
+    
+    cityDiv.append(cityName, temp, wind);
+
+    if (typeof (Storage) !== 'undefined') {
+        localStorage.setItem('city', city.value);
+
+        let searchContainer = document.getElementById('search-container')
+
+        let storedCity = document.createElement('button')
+        storedCity.setAttribute('id', 'stored-city');
+        storedCity.setAttribute('class', 'button');
+        storedCity.setAttribute('value', city.value)
+        storedCity.innerHTML = localStorage.getItem('city');
+        searchContainer.append(storedCity);
+
+        storedCity.addEventListener('click', storedCityFunc = () => {
+
+            city.value = storedCity.value;
+            fetchFunc();
+        })
+
+    };
+
+    secondFetch(getLat, getLon)
+})
+}
+
+// let firstFetch = cityName => {
+
+//     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city.value + '&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c', options)
+//         .then(response => response.json())
+//         .then(response => {
+//             cityName.innerHTML = city.value;
+//             let temp = document.createElement('p');
+//             let wind = document.createElement('p');
+//             let getTemp = response.main.temp;
+//             let getWind = response.wind.speed;
+//             let getLon = response.coord.lon;
+//             let getLat = response.coord.lat;
+
+
+//             cityDiv.setAttribute('id', "cityDiv");
+//             temp.innerHTML = `Temp: ${getTemp}°F`;
+//             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
 
             
-            cityDiv.append(cityName, temp, wind);
+//             cityDiv.append(cityName, temp, wind);
 
-            if (typeof (Storage) !== 'undefined') {
-                localStorage.setItem('city', city.value);
+//             if (typeof (Storage) !== 'undefined') {
+//                 localStorage.setItem('city', city.value);
 
-                let searchContainer = document.getElementById('search-container')
+//                 let searchContainer = document.getElementById('search-container')
 
-                let storedCity = document.createElement('button')
-                storedCity.setAttribute('id', 'stored-city');
-                storedCity.setAttribute('class', 'button');
-                storedCity.setAttribute('value', city.value)
-                storedCity.innerHTML = localStorage.getItem('city');
-                searchContainer.append(storedCity);
+//                 let storedCity = document.createElement('button')
+//                 storedCity.setAttribute('id', 'stored-city');
+//                 storedCity.setAttribute('class', 'button');
+//                 storedCity.setAttribute('value', city.value)
+//                 storedCity.innerHTML = localStorage.getItem('city');
+//                 searchContainer.append(storedCity);
 
-                storedCity.addEventListener('click', storedCityFunc = () => {
+//                 storedCity.addEventListener('click', storedCityFunc = () => {
 
-                    city.value = storedCity.value;
-                    fetchFunc();
-                })
+//                     city.value = storedCity.value;
+//                     fetchFunc();
+//                 })
 
-            };
+//             };
 
-            secondFetch(getLat, getLon)
-        }), { once: true }
-}
+//             secondFetch(getLat, getLon)
+//         }), { once: true }
+// }
 
 
 let secondFetch = (getLat, getLon) => {
