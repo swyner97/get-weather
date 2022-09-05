@@ -33,7 +33,6 @@ let getSearchVal = (event) => {
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
 
             cityDiv.append(cityName, temp, wind);
-            searchResults.push(cityName, temp, wind)
             searchedData.append(cityDiv);
 
             secondFetch(getLat, getLon)
@@ -81,7 +80,7 @@ let secondFetch = (getLat, getLon) => {
             humidity.innerHTML = `Humidty: ${getHumidity}%`;
 
             cityDiv.append(cityName, humidity, uvIndex);
-            searchResults.push(humidity, uvIndex)
+        
             days = moment().add(1, 'days').format('l')
             for (let i = 0; i < 7; i++) {
                 let daysFormula = moment().add([i], 'days').format('l');
