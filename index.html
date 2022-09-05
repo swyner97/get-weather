@@ -16,34 +16,88 @@
     </header>
     <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly">
         <div class="is-flex is-flex-direction-column">
-             <form id="search-container submit-form" class="is-flex is-flex-direction-column is-align-items-center">
-            <h1>Search for a City:</h1>
-            <input type="text" id="search-input" class="input">
-            <button type="submit" id="search-button" class="button">Submit</button>
-        </form> 
-        <div id="search-history" class="is-flex is-flex-direction-column">
+            <form id="search-container submit-form" class="is-flex is-flex-direction-column is-align-items-center">
+                <h1>Search for a City:</h1>
+                <input type="text" id="search-input" class="input">
+                <button type="submit" id="search-button" class="button">Submit</button>
+            </form>
+            <div id="search-history" class="is-flex is-flex-direction-column">
 
+            </div>
         </div>
-        </div>
-    
+
         <div id="searched-data">
 
 
             <div class="is-flex is-flex-direction-column">
-                <div class="cityClass">
-                </div>
+
                 <div class="five-day-container">
                     <h1>5 Day Forecast:</h1>
                     <div id="5-day" class="is-flex is-flex-direction-row">
 
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day1-date"></h2>
+                            <img class="day1-img">
+                            <p class="day1-temp"></p>
+                            <p class="day1-wind"></p>
+                            <p class="day1-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day2-date"></h2>
+                            <img class="day2-img" src="">
+                            <p class="day2-temp"></p>
+                            <p class="day2-wind"></p>
+                            <p class="day2-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day3-date"></h2>
+                            <img class="day3-img" src="">
+                            <p class="day3-temp"></p>
+                            <p class="day3-wind"></p>
+                            <p class="day3-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day4-date"></h2>
+                            <img class="day4-img" src="">
+                            <p class="day4-temp"></p>
+                            <p class="day4-wind"></p>
+                            <p class="day4-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day5-date"></h2>
+                            <img class="day5-img" src="">
+                            <p class="day5-temp"></p>
+                            <p class="day5-wind"></p>
+                            <p class="day5-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day6-date"></h2>
+                            <img class="day6-img" src="">
+                            <p class="day6-temp"></p>
+                            <p class="day6-wind"></p>
+                            <p class="day6-humidity"></p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                            <h2 class="day7-date"></h2>
+                            <img class="day7-img" src="">
+                            <p class="day7-temp"></p>
+                            <p class="day7-wind"></p>
+                            <p class="day7-humidity"></p>
+                        </div>
                     </div>
                 </div>
 
             </div>
+            <div class="cityClass" id="cityDiv">
+                <h1 class="current-city"></h1>
+                <p class="current-temp"></p>
+                <p class="current-wind"></p>
+                <p class="current-humidity"></p>
+                <p class="current-UV"></p>
+            </div>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="./assets/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+        <script src="./assets/script.js"></script>
 </body>
 
 </html>
