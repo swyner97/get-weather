@@ -4,13 +4,15 @@ let weatherApiKey = `26ddf8f43bcf591b20c4ad83cf52357c`;
 let cityDiv = document.querySelector('.cityClass');
 let cityName = document.createElement('h1');
 let city = document.getElementById('search-input');
+let form = document.querySelector('form');
+let result = document.getElementById('searched-data')
 
 const options = { method: 'GET' };
 
 let getSearchVal = (event) => {
     event.preventDefault();
     if (!city.value) {
-
+       return;
     }
 
     let searchedVal = city.value;
@@ -31,15 +33,16 @@ let getSearchVal = (event) => {
             wind.innerHTML = `Wind Speed: ${getWind} MPH`;
 
             cityDiv.append(cityName, temp, wind);
+            searchResults.push(cityName, temp, wind)
             searchedData.append(cityDiv);
 
             secondFetch(getLat, getLon)
             if (typeof (Storage) !== 'undefined') {
                 localStorage.setItem('city', city.value);
 
-                let searchContainer = document.getElementById('search-container')
+                let searchContainer = document.getElementById('search-history');
 
-                let storedCity = document.createElement('button')
+                let storedCity = document.createElement('button');
                 storedCity.setAttribute('id', 'stored-city');
                 storedCity.setAttribute('class', 'button');
                 storedCity.setAttribute('value', city.value)
@@ -55,6 +58,9 @@ let getSearchVal = (event) => {
 
         }).catch(err => console.error(err));
 }
+
+
+button.addEventListener('submit', getSearchVal)
 
 
 
@@ -74,7 +80,8 @@ let secondFetch = (getLat, getLon) => {
             uvIndex.innerHTML = `UV Index: ${getUVIndex}`
             humidity.innerHTML = `Humidty: ${getHumidity}%`;
 
-            cityDiv.append(cityName, temp, wind, humidity, uvIndex);
+            cityDiv.append(cityName, humidity, uvIndex);
+            searchResults.push(humidity, uvIndex)
             days = moment().add(1, 'days').format('l')
             for (let i = 0; i < 7; i++) {
                 let daysFormula = moment().add([i], 'days').format('l');
@@ -105,4 +112,5 @@ let secondFetch = (getLat, getLon) => {
 
 
 
-button.addEventListener('submit', getSearchVal)
+form.addEventListener('submit', getSearchVal)
+
