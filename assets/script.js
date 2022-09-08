@@ -15,25 +15,24 @@ let getSearchVal = (event) => {
         return;
     }
 
-    let searchedVal = city.value;
-
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=Dallas&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
         .then(response => response.json())
         .then(response => {
-            // let searchedData = document.getElementById('searched-data');
-            let city = document.querySelector('current-city');
+            let cityName = document.querySelector('.current-city');
             // city.innerHTML = searchedVal
-            let temp = document.querySelector('current-temp');
-            let wind = document.querySelector('wind');
+            let temp = document.querySelector('.current-temp');
+            let wind = document.querySelector('.current-wind');
             let getTemp = response.main.temp;
             let getWind = response.wind.speed;
             let getLon = response.coord.lon;
             let getLat = response.coord.lat;
 
-            // temp.innerHTML = `Temp: ${getTemp}°F`;
-            // wind.innerHTML = `Wind Speed: ${getWind} MPH`;
-
-            cityDiv.append(city, temp, wind);
+            temp.innerHTML = `Temp: ${getTemp}°F`;
+            wind.innerHTML = `Wind Speed: ${getWind} MPH`;
+            cityName.innerHTML = city.value;
+            // humidity
+            // UV Index
+            cityDiv.append(cityName, temp, wind);
             // searchedData.append(cityDiv);
 
             secondFetch(getLat, getLon)
@@ -67,6 +66,16 @@ let secondFetch = (getLat, getLon) => {
         .then(response => response.json())
         .then(response => {
 
+            let humidity = response.current.humidity;
+            let uvi = response.current.uvi;
+            let humidityEl = document.querySelector('.current-humidity');
+            let uviEl= document.querySelector('.current-UV');
+
+            humidityEl.innerHTML = `Humidity: ${humidity}`;
+            uviEl.innerHTML = `UV Index: ${uvi}`;
+
+            cityDiv.append(uviEl, humidityEl);
+
             //     ICONS
             let getDay1Icon = response.daily[0].weather[0].icon;
             let getDay2Icon = response.daily[1].weather[0].icon;
@@ -77,13 +86,13 @@ let secondFetch = (getLat, getLon) => {
             let getDay7Icon = response.daily[6].weather[0].icon;
             console.log(getDay1Icon)
 
-            let day1Icon = document.querySelector('day1-img')
-            let day2Icon = document.querySelector('day2-img')
-            let day3Icon =  document.querySelector('day3-img')
-            let day4Icon =  document.querySelector('day4-img')
-            let day5Icon =  document.querySelector('day5-img')
-            let day6Icon =  document.querySelector('day6-img')
-            let day7Icon =  document.querySelector('day7-img')
+            let day1Icon = document.querySelector('.day1-img')
+            let day2Icon = document.querySelector('.day2-img')
+            let day3Icon = document.querySelector('.day3-img')
+            let day4Icon = document.querySelector('.day4-img')
+            let day5Icon = document.querySelector('.day5-img')
+            let day6Icon = document.querySelector('.day6-img')
+            let day7Icon = document.querySelector('.day7-img')
 
             day1Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay1Icon}.png`);
             day2Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay2Icon}.png`);
@@ -103,13 +112,13 @@ let secondFetch = (getLat, getLon) => {
             let getDay6Temp = response.daily[5].temp.day;
             let getDay7Temp = response.daily[6].temp.day;
 
-            let day1Temp = document.querySelector('day1-temp');
-            let day2Temp = document.querySelector('day2-temp');
-            let day3Temp = document.querySelector('day3-temp');
-            let day4Temp = document.querySelector('day4-temp');
-            let day5Temp = document.querySelector('day5-temp');
-            let day6Temp = document.querySelector('day6-temp');
-            let day7Temp = document.querySelector('day7-temp');
+            let day1Temp = document.querySelector('.day1-temp');
+            let day2Temp = document.querySelector('.day2-temp');
+            let day3Temp = document.querySelector('.day3-temp');
+            let day4Temp = document.querySelector('.day4-temp');
+            let day5Temp = document.querySelector('.day5-temp');
+            let day6Temp = document.querySelector('.day6-temp');
+            let day7Temp = document.querySelector('.day7-temp');
 
             day1Temp.innerHTML = getDay1Temp;
             day2Temp.innerHTML = getDay2Temp;
@@ -127,13 +136,13 @@ let secondFetch = (getLat, getLon) => {
             let getDay6Wind = response.daily[5].wind_speed;
             let getDay7Wind = response.daily[6].wind_speed;
 
-            let day1Wind = document.querySelector('day1-wind');
-            let day2Wind = document.querySelector('day2-wind');
-            let day3Wind = document.querySelector('day3-wind');
-            let day4Wind = document.querySelector('day4-wind');
-            let day5Wind = document.querySelector('day5-wind');
-            let day6Wind = document.querySelector('day6-wind');
-            let day7Wind = document.querySelector('day7-wind');
+            let day1Wind = document.querySelector('.day1-wind');
+            let day2Wind = document.querySelector('.day2-wind');
+            let day3Wind = document.querySelector('.day3-wind');
+            let day4Wind = document.querySelector('.day4-wind');
+            let day5Wind = document.querySelector('.day5-wind');
+            let day6Wind = document.querySelector('.day6-wind');
+            let day7Wind = document.querySelector('.day7-wind');
 
             day1Wind.innerHTML = getDay1Wind;
             day2Wind.innerHTML = getDay2Wind;
@@ -151,13 +160,13 @@ let secondFetch = (getLat, getLon) => {
             let getDay6Humidity = response.daily[5].humidity;
             let getDay7Humidity = response.daily[6].humidity;
 
-            let day1Humidity = document.querySelector('day1-humidity');
-            let day2Humidity = document.querySelector('day2-humidity');
-            let day3Humidity = document.querySelector('day3-humidity');
-            let day4Humidity = document.querySelector('day4-humidity');
-            let day5Humidity = document.querySelector('day5-humidity');
-            let day6Humidity = document.querySelector('day6-humidity');
-            let day7Humidity = document.querySelector('day7-humidity');
+            let day1Humidity = document.querySelector('.day1-humidity');
+            let day2Humidity = document.querySelector('.day2-humidity');
+            let day3Humidity = document.querySelector('.day3-humidity');
+            let day4Humidity = document.querySelector('.day4-humidity');
+            let day5Humidity = document.querySelector('.day5-humidity');
+            let day6Humidity = document.querySelector('.day6-humidity');
+            let day7Humidity = document.querySelector('.day7-humidity');
 
             day1Humidity.innerHTML = getDay1Humidity;
             day2Humidity.innerHTML = getDay2Humidity;
