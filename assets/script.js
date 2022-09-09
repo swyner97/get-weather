@@ -54,8 +54,7 @@ let getSearchVal = (event) => {
                 event.preventDefault();
             };
 
-        }).catch(err => 
-                {alert('Check Spelling!')});
+        }).catch(err => console.error(err));
 }
 
 button.addEventListener('submit', getSearchVal)
@@ -174,7 +173,14 @@ let secondFetch = (getLat, getLon) => {
             day6Humidity.innerHTML = getDay6Humidity;
             day7Humidity.innerHTML = getDay7Humidity;
         })
-        .catch(err => console.error(err));
+        .catch(err =>  {alert('Check Spelling!')});
+
+        let flexRow = document.querySelector('.columns');
+        flexRow.classList.remove('is-flex-direction-row');
+        flexRow.classList.add('is-flex-direction-column')
+
+        let flexDays = document.getElementById('5-day');
+        flexDays.classList.add('is-flex-wrap', 'is-justify-content-center', 'is-flex-wrap-wrap')
 }
 
 
