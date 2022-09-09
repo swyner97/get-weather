@@ -93,13 +93,13 @@ let secondFetch = (getLat, getLon) => {
             let day6Icon = document.querySelector('.day6-img')
             let day7Icon = document.querySelector('.day7-img')
 
-            day1Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay1Icon}.png`);
-            day2Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay2Icon}.png`);
-            day3Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay3Icon}.png`);
-            day4Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay4Icon}.png`);
-            day5Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay5Icon}.png`);
-            day6Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay6Icon}.png`);
-            day7Icon.setAttribute('src', `http://openweathermap.org/img/wn/${getDay7Icon}.png`);
+            day1Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay1Icon}.png`);
+            day2Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay2Icon}.png`);
+            day3Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay3Icon}.png`);
+            day4Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay4Icon}.png`);
+            day5Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay5Icon}.png`);
+            day6Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay6Icon}.png`);
+            day7Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay7Icon}.png`);
 
             //      TEMP
             let getDay1Temp = response.daily[0].temp.day;
