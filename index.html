@@ -14,28 +14,26 @@
     <header class="is-flex is-justify-content-center">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly columns" id ='main'>
-        <div class="is-flex is-flex-direction-column column is-4 is-6-mobile">
+    <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly columns is-mobile" id ='main'>
+        <div class="is-flex is-flex-direction-column column is-4">
             <form id="search-container submit-form" class="is-flex is-flex-direction-column is-align-items-center">
                 <h1>Search for a City:</h1>
                 <input type="text" id="search-input" class="input">
                 <button type="submit" id="search-button" class="button">Submit</button>
             </form>
-            <div id="search-history" class="is-flex is-flex-direction-column">
+            <div id="search-history" class="is-flex is-flex-direction-column column">
 
             </div>
         </div>
 
-        <div id="searched-data column is-8 is-6-mobile">
-
-
+        <div id="searched-data" class="column is-8">
             <div class="is-flex is-flex-direction-column ">
 
-                <div class="five-day-container">
+                <div class="five-day-container" id="hide">
                     <h1>5 Day Forecast:</h1>
-                    <div id="5-day" class="is-flex is-flex-direction-row">
+                    <div id="5-day" class="is-flex is-flex-direction-row ">
 
-                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card ">
                             <h2 class="day1-date"></h2>
                             <img class="day1-img">
                             <p class="day1-temp"></p>
@@ -70,7 +68,7 @@
                             <p class="day5-wind"></p>
                             <p class="day5-humidity"></p>
                         </div>
-                        <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
+                        <!-- <div class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap card">
                             <h2 class="day6-date"></h2>
                             <img class="day6-img" src="">
                             <p class="day6-temp"></p>
@@ -83,12 +81,12 @@
                             <p class="day7-temp"></p>
                             <p class="day7-wind"></p>
                             <p class="day7-humidity"></p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
             </div>
-            <div class="cityClass" id="cityDiv">
+            <div class="cityClass column" id="">
                 <h1 class="current-city"></h1>
                 <p class="current-temp"></p>
                 <p class="current-wind"></p>

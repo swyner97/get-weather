@@ -76,3 +76,8 @@ button {
 .five-day-container {
     margin: 10px;
 }
+
+
+#hide {
+    display: none;
+}

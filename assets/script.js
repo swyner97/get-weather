@@ -75,30 +75,50 @@ let secondFetch = (getLat, getLon) => {
 
             cityDiv.append(uviEl, humidityEl);
 
+            // DATE 
+
+            let day1 = moment().add(1, 'days').format('l');
+            let day2 = moment().add(2, 'days').format('l');
+            let day3 = moment().add(3, 'days').format('l');
+            let day4 = moment().add(4, 'days').format('l');
+            let day5 = moment().add(5, 'days').format('l');
+
+            let day1El = document.querySelector('.day1-date')
+            let day2El = document.querySelector('.day2-date')
+            let day3El = document.querySelector('.day3-date')
+            let day4El = document.querySelector('.day4-date')
+            let day5El = document.querySelector('.day5-date')
+
+            day1El.innerHTML = day1;
+            day2El.innerHTML = day2;
+            day3El.innerHTML = day3;
+            day4El.innerHTML = day4;
+            day5El.innerHTML = day5;
+
             //     ICONS
             let getDay1Icon = response.daily[0].weather[0].icon;
             let getDay2Icon = response.daily[1].weather[0].icon;
             let getDay3Icon = response.daily[2].weather[0].icon;
             let getDay4Icon = response.daily[3].weather[0].icon;
             let getDay5Icon = response.daily[4].weather[0].icon;
-            let getDay6Icon = response.daily[5].weather[0].icon;
-            let getDay7Icon = response.daily[6].weather[0].icon;
+            // let getDay6Icon = response.daily[5].weather[0].icon;
+            // let getDay7Icon = response.daily[6].weather[0].icon;
        
             let day1Icon = document.querySelector('.day1-img')
             let day2Icon = document.querySelector('.day2-img')
             let day3Icon = document.querySelector('.day3-img')
             let day4Icon = document.querySelector('.day4-img')
             let day5Icon = document.querySelector('.day5-img')
-            let day6Icon = document.querySelector('.day6-img')
-            let day7Icon = document.querySelector('.day7-img')
+            // let day6Icon = document.querySelector('.day6-img')
+            // let day7Icon = document.querySelector('.day7-img')
 
             day1Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay1Icon}.png`);
             day2Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay2Icon}.png`);
             day3Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay3Icon}.png`);
             day4Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay4Icon}.png`);
             day5Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay5Icon}.png`);
-            day6Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay6Icon}.png`);
-            day7Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay7Icon}.png`);
+            // day6Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay6Icon}.png`);
+            // day7Icon.setAttribute('src', `https://openweathermap.org/img/wn/${getDay7Icon}.png`);
 
             //      TEMP
             let getDay1Temp = response.daily[0].temp.day;
@@ -106,81 +126,86 @@ let secondFetch = (getLat, getLon) => {
             let getDay3Temp = response.daily[2].temp.day;
             let getDay4Temp = response.daily[3].temp.day;
             let getDay5Temp = response.daily[4].temp.day;
-            let getDay6Temp = response.daily[5].temp.day;
-            let getDay7Temp = response.daily[6].temp.day;
+            // let getDay6Temp = response.daily[5].temp.day;
+            // let getDay7Temp = response.daily[6].temp.day;
 
             let day1Temp = document.querySelector('.day1-temp');
             let day2Temp = document.querySelector('.day2-temp');
             let day3Temp = document.querySelector('.day3-temp');
             let day4Temp = document.querySelector('.day4-temp');
             let day5Temp = document.querySelector('.day5-temp');
-            let day6Temp = document.querySelector('.day6-temp');
-            let day7Temp = document.querySelector('.day7-temp');
+            // let day6Temp = document.querySelector('.day6-temp');
+            // let day7Temp = document.querySelector('.day7-temp');
 
             day1Temp.innerHTML = getDay1Temp;
             day2Temp.innerHTML = getDay2Temp;
             day3Temp.innerHTML = getDay3Temp;
             day4Temp.innerHTML = getDay4Temp;
             day5Temp.innerHTML = getDay5Temp;
-            day6Temp.innerHTML = getDay6Temp;
-            day7Temp.innerHTML = getDay7Temp;
+            // day6Temp.innerHTML = getDay6Temp;
+            // day7Temp.innerHTML = getDay7Temp;
 
             let getDay1Wind = response.daily[0].wind_speed;
             let getDay2Wind = response.daily[1].wind_speed;
             let getDay3Wind = response.daily[2].wind_speed;
             let getDay4Wind = response.daily[3].wind_speed;
             let getDay5Wind = response.daily[4].wind_speed;
-            let getDay6Wind = response.daily[5].wind_speed;
-            let getDay7Wind = response.daily[6].wind_speed;
+            // let getDay6Wind = response.daily[5].wind_speed;
+            // let getDay7Wind = response.daily[6].wind_speed;
 
             let day1Wind = document.querySelector('.day1-wind');
             let day2Wind = document.querySelector('.day2-wind');
             let day3Wind = document.querySelector('.day3-wind');
             let day4Wind = document.querySelector('.day4-wind');
             let day5Wind = document.querySelector('.day5-wind');
-            let day6Wind = document.querySelector('.day6-wind');
-            let day7Wind = document.querySelector('.day7-wind');
+            // let day6Wind = document.querySelector('.day6-wind');
+            // let day7Wind = document.querySelector('.day7-wind');
 
             day1Wind.innerHTML = getDay1Wind;
             day2Wind.innerHTML = getDay2Wind;
             day3Wind.innerHTML = getDay3Wind;
             day4Wind.innerHTML = getDay4Wind;
             day5Wind.innerHTML = getDay5Wind;
-            day6Wind.innerHTML = getDay6Wind;
-            day7Wind.innerHTML = getDay7Wind;
+            // day6Wind.innerHTML = getDay6Wind;
+            // day7Wind.innerHTML = getDay7Wind;
 
             let getDay1Humidity = response.daily[0].humidity;
             let getDay2Humidity = response.daily[1].humidity;
             let getDay3Humidity = response.daily[2].humidity;
             let getDay4Humidity = response.daily[3].humidity;
             let getDay5Humidity = response.daily[4].humidity;
-            let getDay6Humidity = response.daily[5].humidity;
-            let getDay7Humidity = response.daily[6].humidity;
+            // let getDay6Humidity = response.daily[5].humidity;
+            // let getDay7Humidity = response.daily[6].humidity;
 
             let day1Humidity = document.querySelector('.day1-humidity');
             let day2Humidity = document.querySelector('.day2-humidity');
             let day3Humidity = document.querySelector('.day3-humidity');
             let day4Humidity = document.querySelector('.day4-humidity');
             let day5Humidity = document.querySelector('.day5-humidity');
-            let day6Humidity = document.querySelector('.day6-humidity');
-            let day7Humidity = document.querySelector('.day7-humidity');
+            // let day6Humidity = document.querySelector('.day6-humidity');
+            // let day7Humidity = document.querySelector('.day7-humidity');
 
             day1Humidity.innerHTML = getDay1Humidity;
             day2Humidity.innerHTML = getDay2Humidity;
             day3Humidity.innerHTML = getDay3Humidity;
             day4Humidity.innerHTML = getDay4Humidity;
             day5Humidity.innerHTML = getDay5Humidity;
-            day6Humidity.innerHTML = getDay6Humidity;
-            day7Humidity.innerHTML = getDay7Humidity;
+            // day6Humidity.innerHTML = getDay6Humidity;
+            // day7Humidity.innerHTML = getDay7Humidity;
         })
         .catch(err =>  {alert('Check Spelling!')});
 
         let flexRow = document.querySelector('.columns');
-        flexRow.classList.remove('is-flex-direction-row');
-        flexRow.classList.add('is-flex-direction-column')
+        // flexRow.classList.remove('is-flex-direction-row');
+        // flexRow.classList.add('is-flex-direction-column')
 
         let flexDays = document.getElementById('5-day');
         flexDays.classList.add('is-flex-wrap', 'is-justify-content-center', 'is-flex-wrap-wrap')
+        let cityClass = document.querySelector('.cityClass');
+        cityClass.setAttribute('id','cityDiv');
+
+        let fiveDay = document.querySelector('.five-day-container');
+        fiveDay.removeAttribute('id')
 }
 
 
