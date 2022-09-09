@@ -76,3 +76,11 @@ button {
 .five-day-container {
     margin: 10px;
 }
+
+
+/* @media (max-width: 375px) {
+    #main {
+        display: flex;
+        flex-direction: column;
+    }
+} */
