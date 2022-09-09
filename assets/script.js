@@ -15,7 +15,7 @@ let getSearchVal = (event) => {
         return;
     }
 
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=imperial&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
         .then(response => response.json())
         .then(response => {
             let cityName = document.querySelector('.current-city');
@@ -61,7 +61,7 @@ let getSearchVal = (event) => {
 button.addEventListener('submit', getSearchVal)
 
 let secondFetch = (getLat, getLon) => {
-    fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${getLat}&lon=${getLon}&units=imperial&exclude=minutely,houry&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${getLat}&lon=${getLon}&units=imperial&exclude=minutely,houry&appid=26ddf8f43bcf591b20c4ad83cf52357c`, options)
 
         .then(response => response.json())
         .then(response => {
